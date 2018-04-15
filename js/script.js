@@ -1,6 +1,6 @@
 // event listener to respond to "Show another quote" button clicks
-// when user clicks anywhere on the button, the "printQuote" function is called
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+// when user clicks anywhere on the button, the "changeHandler" function is called
+document.getElementById('loadQuote').addEventListener("click", changeHandler , false);
 
 
 //This is an array containing the quotes as objects in the array.
@@ -77,45 +77,46 @@ function getRandomBackGroundColor(){
   var a = Math.floor(Math.random() * 256);
   var b = Math.floor(Math.random() * 256);
   var c = Math.floor(Math.random() * 256);
-    var bgColor = "rgb(" + a + "," + b + "," + c + ")";
+     var bgColor = "rgb(" + a + "," + b + "," + c + ")";
     return bgColor;
-    console.log(bgColor);
+ console.log(bgColor);
+
     document.body.style.background = bgColor;
     };
 
+//The quoteChange variable sets the interval for the printQuote function to be called, and the changeHandler function clears the interval, prints the quote and restarts the interval timer again.
 
-
-//Prints the output from the getRandomQuote var to the HTML. It also prescribes the correct formatting of the elements such as "quote", and "source" so that they display properly on the page. Also includes conditional statements to display the citation and date if available for each quote.
-
-function printQuote(){
-  var outQuote = getRandomQuote();
+let quoteChange = setInterval(printQuote, 15000);
+function changeHandler(){
+  clearInterval(quoteChange);
+  printQuote();
+  quoteChange = setInterval(printQuote, 15000);  
+}    
     
-    var produceQuote ='';
+//Prints the output from the getRandomQuote var to the HTML. It also prescribes the correct formatting of the elements such as "quote", and "source" so that they display properly on the page. Also includes conditional statements to display the citation and date if available for each quote.
+function printQuote(){
+ var outQuote = getRandomQuote();
+    
+
+  var produceQuote ='';
     produceQuote += '<p class="quote">' + outQuote.quote + '</p>';
     produceQuote +=  '<p class="source">' + outQuote.source + '</p>';
-      if (outQuote.cite){
-        produceQuote += '<span class="citation">' + outQuote.cite + '</span>'
-      }
-      if (outQuote.year){
-        produceQuote += '<span class="year">' + outQuote.year + '</span>'
-      }
-      if (outQuote.tag){
-        produceQuote += '<span class="tag">' + outQuote.tag + '</span>'
+    if (outQuote.cite){
+  produceQuote += '<span class="citation">' + outQuote.cite + '</span>'
+    }
+  if (outQuote.year){
+  produceQuote += '<span class="year">' + outQuote.year + '</span>'
+  }
+  if (outQuote.tag){
+  produceQuote += '<span class="tag">' + outQuote.tag + '</span>'
   
-      document.body.style.backgroundColor = getRandomBackGroundColor();
-      }
- 
- let changeQuoteTimer = setInterval(printQuote, 5000);
+  document.body.style.backgroundColor = getRandomBackGroundColor();
     
- function pageTimer(){
-   changeQuoteTimer = setInterval(printQuote, 5000);
-   clearInterval(changeQuoteTimer);
-   printQuote();
-   changeQuoteTimer = setInterval(printQuote, 5000);
- }   
-    
+   
+      
+  }
 
- //Prints to HTML the output of the printQuote function. Provides it is rendered with the proper element from the HTML.
+//Prints to HTML the output of the printQuote function, and provides that it is rendered with the proper element from the HTML.
 
   var produceQuote = document.getElementById('quote-box').innerHTML = produceQuote;
 
