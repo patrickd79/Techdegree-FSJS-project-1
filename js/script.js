@@ -77,10 +77,9 @@ function getRandomBackGroundColor(){
   var a = Math.floor(Math.random() * 256);
   var b = Math.floor(Math.random() * 256);
   var c = Math.floor(Math.random() * 256);
-     var bgColor = "rgb(" + a + "," + b + "," + c + ")";
+    var bgColor = "rgb(" + a + "," + b + "," + c + ")";
     return bgColor;
- console.log(bgColor);
-
+    console.log(bgColor);
     document.body.style.background = bgColor;
     };
 
@@ -89,25 +88,22 @@ function getRandomBackGroundColor(){
 //Prints the output from the getRandomQuote var to the HTML. It also prescribes the correct formatting of the elements such as "quote", and "source" so that they display properly on the page. Also includes conditional statements to display the citation and date if available for each quote.
 
 function printQuote(){
- var outQuote = getRandomQuote();
+  var outQuote = getRandomQuote();
     
-
-  var produceQuote ='';
+    var produceQuote ='';
     produceQuote += '<p class="quote">' + outQuote.quote + '</p>';
     produceQuote +=  '<p class="source">' + outQuote.source + '</p>';
-    if (outQuote.cite){
-  produceQuote += '<span class="citation">' + outQuote.cite + '</span>'
-    }
-  if (outQuote.year){
-  produceQuote += '<span class="year">' + outQuote.year + '</span>'
-  }
-  if (outQuote.tag){
-  produceQuote += '<span class="tag">' + outQuote.tag + '</span>'
+      if (outQuote.cite){
+        produceQuote += '<span class="citation">' + outQuote.cite + '</span>'
+      }
+      if (outQuote.year){
+        produceQuote += '<span class="year">' + outQuote.year + '</span>'
+      }
+      if (outQuote.tag){
+        produceQuote += '<span class="tag">' + outQuote.tag + '</span>'
   
-  document.body.style.backgroundColor = getRandomBackGroundColor();
-     
-      
-  }
+      document.body.style.backgroundColor = getRandomBackGroundColor();
+      }
  
  let changeQuoteTimer = setInterval(printQuote, 5000);
     
