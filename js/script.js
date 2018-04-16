@@ -2,9 +2,7 @@
 // when user clicks anywhere on the button, the "changeHandler" function is called
 document.getElementById('loadQuote').addEventListener("click", changeHandler , false);
 
-
 //This is an array containing the quotes as objects in the array.
-
 var quotes = [
   {quote: "Give me chastity and continence, but not yet.",
    source: " Saint Augustine",
@@ -62,30 +60,24 @@ var quotes = [
    tag:"Philosphy"
 
   }
-
 ];
 
 //Uses a random number generator to randomly generate a quote to display, and returns the value, which is then stored in the outQuote var.
-
 function getRandomQuote(){
   var randomNumber = (Math.floor(Math.random() * quotes.length));
     return quotes[randomNumber];
-
 };
-
 function getRandomBackGroundColor(){
   var a = Math.floor(Math.random() * 256);
   var b = Math.floor(Math.random() * 256);
   var c = Math.floor(Math.random() * 256);
      var bgColor = "rgb(" + a + "," + b + "," + c + ")";
-    return bgColor;
- console.log(bgColor);
-
-    document.body.style.background = bgColor;
+   return bgColor;
+   console.log(bgColor);
+ document.body.style.background = bgColor;
     };
 
 //The quoteChange variable sets the interval for the printQuote function to be called, and the changeHandler function clears the interval, prints the quote and restarts the interval timer again.
-
 let quoteChange = setInterval(printQuote, 15000);
 function changeHandler(){
   clearInterval(quoteChange);
@@ -96,9 +88,7 @@ function changeHandler(){
 //Prints the output from the getRandomQuote var to the HTML. It also prescribes the correct formatting of the elements such as "quote", and "source" so that they display properly on the page. Also includes conditional statements to display the citation and date if available for each quote.
 function printQuote(){
  var outQuote = getRandomQuote();
-    
-
-  var produceQuote ='';
+ var produceQuote ='';
     produceQuote += '<p class="quote">' + outQuote.quote + '</p>';
     produceQuote +=  '<p class="source">' + outQuote.source + '</p>';
     if (outQuote.cite){
@@ -109,17 +99,11 @@ function printQuote(){
   }
   if (outQuote.tag){
   produceQuote += '<span class="tag">' + outQuote.tag + '</span>'
-  
   document.body.style.backgroundColor = getRandomBackGroundColor();
-    
-   
-      
-  }
+ }
 
 //Prints to HTML the output of the printQuote function, and provides that it is rendered with the proper element from the HTML.
-
-  var produceQuote = document.getElementById('quote-box').innerHTML = produceQuote;
-
+var produceQuote = document.getElementById('quote-box').innerHTML = produceQuote;
 }
 
 
